@@ -118,6 +118,24 @@ Cliquer sur **“List Student”** pour afficher la liste des étudiants.
 
 ## 3️⃣ Mise en place d’un Docker Registry privé
 
+⚠️ Note importante concernant l’adresse IP (192.168.x.x)
+
+L’adresse IP 192.168.56.103 utilisée dans ce projet correspond à l’adresse IP locale de ma machine virtuelle.
+
+Si vous souhaitez réutiliser ce projet sur un autre environnement, il est impératif d’adapter cette IP selon votre propre configuration réseau.
+
+Fichiers concernés
+
+Les fichiers suivants contiennent cette adresse IP et doivent être modifiés si nécessaire :
+
+registry/docker-compose.registry.yml
+
+variable d’environnement REGISTRY_URL
+
+/etc/docker/daemon.json
+
+section insecure-registries
+
 ### Fichier : `registry/docker-compose.registry.yml`
 
 Composants :
