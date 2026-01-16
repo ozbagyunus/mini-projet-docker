@@ -68,14 +68,14 @@ docker build -t student-list-api ./simple_api
 ```bash
 docker run -d --name student-api \
   -p 5000:5000 \
-  -v "$PWD/simple_api/student_age.json:/data/student_age.json:ro" \
+  -v "$PWD/simple_api/student_age.json:/data/student_age.json" \
   student-list-api
 
 curl -u toto:python http://localhost:5000/pozos/api/v1.0/get_student_ages
 ```
 
 📸 **Screenshot 1 — API fonctionnelle (curl + réponse JSON)**
-*(à insérer ici)*
+![API OK](screenshots/01_api_curl.png)
 
 ---
 
@@ -106,12 +106,12 @@ docker-compose up -d
 
 Accès au site :
 
-* [http://localhost:8080](http://localhost:8080)
+* [http://192.168.56.103:8080](http://192.168.56.103:8080)
 
 Cliquer sur **“List Student”** pour afficher la liste des étudiants.
 
 📸 **Screenshot 2 — Website affichant la liste des étudiants**
-*(à insérer ici)*
+![Website List Student](screenshots/02_website_list_student.png)
 
 ---
 
@@ -168,14 +168,8 @@ docker push 192.168.56.103:5001/student-list-api:1.0
 ```
 
 ### Vérification
-
-```bash
-curl http://192.168.56.103:5001/v2/_catalog
-curl http://192.168.56.103:5001/v2/student-list-api/tags/list
-```
-
 📸 **Screenshot 3 — UI du registry affichant l’image poussée**
-*(à insérer ici)*
+![Private Registry UI](screenshots/03_registry_ui.png)
 
 ---
 
@@ -190,14 +184,3 @@ L’application POZOS a été entièrement dockerisée avec succès :
 Ce projet permet de reproduire facilement l’environnement complet via Docker.
 
 ---
-
-## 📌 Commandes utiles
-
-```bash
-docker-compose ps
-docker-compose logs -f
-docker logs student-api
-docker logs student-website
-docker logs private-registry
-docker logs registry-ui
-```
