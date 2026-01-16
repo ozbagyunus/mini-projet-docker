@@ -124,15 +124,13 @@ L’adresse IP 192.168.56.103 utilisée dans ce projet correspond à l’adresse
 
 Si vous souhaitez réutiliser ce projet sur un autre environnement, il est impératif d’adapter cette IP selon votre propre configuration réseau.
 
-Fichiers concernés
-
 Les fichiers suivants contiennent cette adresse IP et doivent être modifiés si nécessaire :
 
-registry/docker-compose.registry.yml
+**registry/docker-compose.registry.yml**
 
 variable d’environnement REGISTRY_URL
 
-/etc/docker/daemon.json
+**/etc/docker/daemon.json**
 
 section insecure-registries
 
