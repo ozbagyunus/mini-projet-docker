@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  api:
+    image: student-list-api
+    container_name: student-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./simple_api/student_age.json:/data/student_age.json
+    networks:
+      - student-net
+
+  website:
+    image: php:apache
+    container_name: student-website
+    ports:
+      - "8080:80"
+    environment:
+      - USERNAME=toto
+      - PASSWORD=python
+    volumes:
+      - ./website:/var/www/html
+    depends_on:
+      - api
+    networks:
+      - student-net
+
+networks:
+  student-net:

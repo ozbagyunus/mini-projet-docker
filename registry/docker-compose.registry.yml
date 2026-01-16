@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  registry:
+    image: registry:2
+    container_name: private-registry
+    ports:
+      - "5001:5000"
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: '["*"]'
+    volumes:
+      - registry-data:/var/lib/registry
+    networks:
+      - registry-net
+
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    container_name: registry-ui
+    ports:
+      - "8081:80"
+    environment:
+      SINGLE_REGISTRY: "true"
+      REGISTRY_TITLE: "Private Registry"
+      REGISTRY_URL: "http://192.168.56.103:5001"
+      DELETE_IMAGES: "true"
+    depends_on:
+      - registry
+    networks:
+      - registry-net
+
+volumes:
+  registry-data:
+
+networks:
+  registry-net:
